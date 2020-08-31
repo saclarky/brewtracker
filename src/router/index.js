@@ -5,11 +5,16 @@ import login from '../views/logIn'
 import brews from '../views/brews'
 import addBrewDay from '../views/addBrewDay'
 import calendar from '../views/calendar'
+import home from '../views/home'
 
 Vue.use(VueRouter)
 
   const routes = [
-  {
+    {
+      path: '/',
+      name: 'home',
+      component: home
+    },{
     path: '/login',
     name: 'login',
     component: login
