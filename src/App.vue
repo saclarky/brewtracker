@@ -21,6 +21,18 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap');
+
+html, body {
+  font-family: 'Anonymous Pro', monospace;
+}
+body {
+  margin: 0 auto;
+}
+.navOffset {
+  position: relative;
+  top: 66px;
+}
 .row {
     display: flex;
     flex-direction: row;

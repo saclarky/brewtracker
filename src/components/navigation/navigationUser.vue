@@ -58,11 +58,11 @@ section {
   align-items:center;
 }
 .nav {
-  top: 51px;
+  top: 39px;
     left: 0;
     right: 0;
     position: fixed;
-    background: #e2e2e2;
+    background: #f5f5f5;
     z-index: 100;
 }
 .nav-menu {
@@ -81,7 +81,10 @@ section {
 }
 /* .selected-menu-class {    
 } */
-
+.menu-item {
+  font-size: 1.1rem;
+  padding: 5px 15px;
+}
 .col {
   display: flex;
   margin: 0 10px;
@@ -90,6 +93,7 @@ a {
   color: #09709a;
   font-size: 1.1rem;
   cursor:pointer;
+  text-decoration: none;
 }
 
 a.router-link-exact-active {

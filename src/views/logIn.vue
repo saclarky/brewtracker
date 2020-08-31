@@ -1,5 +1,5 @@
 <template>
-  <div id="login">
+  <div id="login navOffset">
 
      <div class="hero">
       <div class="hero-top" id="nav-bar">
