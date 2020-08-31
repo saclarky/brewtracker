@@ -1,32 +1,41 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <navigation id="nav"></navigation>
+    <navigationUser v-if="currentUser" id="navUser"></navigationUser>
     <router-view/>
   </div>
 </template>
 
+<script>
+import { mapState } from 'vuex'
+import navigation from './components/navigation/navigation'
+import navigationUser from './components/navigation/navigationUser'
+
+export default {
+  
+  components: {navigation, navigationUser},
+  computed: {
+    ...mapState(['currentUser'])
+  }
+}
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+.row {
+    display: flex;
+    flex-direction: row;
 }
-
-#nav {
-  padding: 30px;
+.column {
+  display: flex;
+  flex-direction: column;
 }
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+.loader {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #34db9b;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
 }
 </style>
