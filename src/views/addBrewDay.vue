@@ -16,6 +16,9 @@
             <option value="Cliff">Cliff</option>
           </select>
         </div>
+        <!-- COlor -->
+        <div>Choose a calendar color for this brew:</div>
+        <verte v-model="brewColor" model="rgb"></verte>
         <!-- Date and Time -->
         <div class='row lineSection'>
         
@@ -59,13 +62,16 @@
 
 <script>
 import VueTimepicker from "vue2-timepicker";
+import Verte from 'verte';
+
 export default {
-  components: { VueTimepicker },
+  components: { VueTimepicker, Verte },
   data() {
     return {
       showSpinner: false,
       disableCancel: false,
       brewName: "",
+      brewColor: "",
       brewers: [],
       newEntryDate: new Date(),
       newEntryTime: {
@@ -105,6 +111,7 @@ export default {
       } else {
         h = this.newEntryTime.hh;
       }
+      console.log('color',this.brewColor)
       let data = {
         date: new Date(
           this.newEntryDate.getFullYear(),
@@ -115,6 +122,7 @@ export default {
         ),
         brewName: this.brewName,
         brewers: this.brewers,
+        color: this.brewColor
       };
       console.log(data);
       // Add new date to tripDates
@@ -142,6 +150,7 @@ export default {
 };
 </script>
 <style scoped>
+  @import '../../node_modules/verte/dist/verte.css';
 .title {
   margin: 25px 5px;
   font-size: 1.3rem;

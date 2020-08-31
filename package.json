@@ -11,6 +11,7 @@
     "core-js": "^3.6.5",
     "firebase": "^7.19.1",
     "v-calendar": "^1.0.8",
+    "verte": "0.0.12",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vue-simple-calendar": "^4.4.0",

@@ -138,7 +138,8 @@ export default new Vuex.Store({
       return fb.db.collection('brewDays').add({
         brewers: data.brewers,
         startDate: data.date,
-        title: data.brewName
+        title: data.brewName,
+        style: 'background-color:' + String(data.color)
       })
     }
   }
