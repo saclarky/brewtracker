@@ -22,9 +22,10 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap');
-
+@import '../node_modules/vue2-timepicker/dist/VueTimepicker.css';
 html, body {
   font-family: 'Anonymous Pro', monospace;
+  font-size: 16pt;
 }
 body {
   margin: 0 auto;

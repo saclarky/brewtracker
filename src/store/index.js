@@ -110,6 +110,13 @@ export default new Vuex.Store({
         .catch(err => {
           console.log(err)
         })
+    },
+    addBrewDayAction: function(context, data) {
+      return fb.db.collection('brewDays').add({
+        brewers: data.brewers,
+        brewDate: data.date,
+        brewName: data.brewName
+      })
     }
   }
 })
