@@ -32,7 +32,7 @@ body {
 }
 .navOffset {
   position: relative;
-  top: 66px;
+  top: 72px;
 }
 .row {
     display: flex;

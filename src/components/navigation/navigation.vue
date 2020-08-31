@@ -51,8 +51,8 @@ section {
 .nav-menu {
   /* padding: 0 15px; */
   /* background-color: #f7f7f7; */
-  width: 120px;
-  font-size: 1.2rem;  
+  /* width: 120px; */
+  font-size: 1rem;  
   color: #054d6b;
 }
 .menu {
@@ -65,10 +65,7 @@ section {
 }
 /* .selected-menu-class {    
 } */
-.menu-item {
-  font-size: 1.1rem;
-  padding: 15px;
-}
+
 .col {
   display: flex;
   margin: 0 10px;

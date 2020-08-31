@@ -30,11 +30,29 @@ fb.auth.onAuthStateChanged(user => {
   }
 })
 
+      // realtime firebase connection
+      fb.db.collection('brewDays').orderBy('startDate', 'desc').onSnapshot(snapshot => {
+        let daysArray = []
+      
+        snapshot.forEach(doc => {
+          let post = doc.data()
+          post.id = String(doc.id)
+            post.startDate = new Date(doc.data().startDate.seconds*1000)
+          
+          daysArray.push(post)
+        })
+     console.log(daysArray)
+        store.commit('brewDaysMutate', daysArray)
+      })
+
 export default new Vuex.Store({
   state: {
      // USER DATA BINDS
      currentUser: null,
      userProfile: {},
+
+     // BREWS
+     brewDaysState: []
   },
   mutations: {
     // LOGIN // AUTH STUFF
@@ -48,6 +66,9 @@ export default new Vuex.Store({
       console.log(val)
       state.userProfile = val
     },
+    brewDaysMutate(state, val){
+      state.brewDaysState = val
+    }
   },
   actions: {
     logout: function (context) {
@@ -111,11 +132,13 @@ export default new Vuex.Store({
           console.log(err)
         })
     },
+
+    // BREW DAYS
     addBrewDayAction: function(context, data) {
       return fb.db.collection('brewDays').add({
         brewers: data.brewers,
-        brewDate: data.date,
-        brewName: data.brewName
+        startDate: data.date,
+        title: data.brewName
       })
     }
   }

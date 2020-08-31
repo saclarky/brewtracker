@@ -91,7 +91,7 @@ section {
 }
 a {
   color: #09709a;
-  font-size: 1.1rem;
+  font-size: .9rem;
   cursor:pointer;
   text-decoration: none;
 }
