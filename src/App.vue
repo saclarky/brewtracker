@@ -26,6 +26,9 @@ export default {
 html, body {
   font-family: 'Anonymous Pro', monospace;
   font-size: 16pt;
+  height: 100%;
+	margin: 0;
+	/* background-color: #f7fcff; */
 }
 body {
   margin: 0 auto;

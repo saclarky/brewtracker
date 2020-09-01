@@ -16,7 +16,7 @@
             <option value="Cliff">Cliff</option>
           </select>
         </div>
-        <!-- COlor -->
+        <!-- Color -->
         <div>Choose a calendar color for this brew:</div>
         <verte v-model="brewColor" model="rgb"></verte>
         <!-- Date and Time -->

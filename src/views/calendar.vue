@@ -21,8 +21,10 @@
             :events="brewDaysState"
             :displayPeriodUom='calPeriodDisplay'
             :displayPeriodCount='calPeriodCount'
-			class='custom'
+			class="theme-default holiday-us-traditional holiday-us-official"
+             @click-event="toggleItemModal" 
             >
+            <!-- in v5 you can clcik in item directly, replace click-date -->
 			<calendar-view-header
 				slot="header"
 				slot-scope="t"
@@ -30,27 +32,32 @@
 				@input="setShowDate" />
 		</calendar-view>
         </div>
+        <viewItemPopup v-if="showItem" @close='toggleItemModal("","")' :item="item"></viewItemPopup>
     </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import { CalendarView, CalendarViewHeader } from "vue-simple-calendar"
+import viewItemPopup from '../components/calendar/viewItemPopup'
 export default {
     mounted() {
 console.log(this.brewDaysState)
     },
-    components: {CalendarView, CalendarViewHeader},
+    components: {CalendarView, CalendarViewHeader, viewItemPopup},
     data: function() {
             return { 
                 showDate: new Date(),
                 radioFlex: 'month',
                 countOfPeriod: 1,
-            items: [{
-            id: 'e1',
-            startDate: '2020-08-19',
-            title: 'Sample event 1'
-          }] 
+            item: '',
+            showItem: false,
+            tmpItems: [
+				{
+					id: "e0",
+                    startDate: "2020-09-05",
+                    title: 'test'
+				}]
           }
         },
         computed: {
@@ -65,13 +72,20 @@ console.log(this.brewDaysState)
 		methods: {
 			setShowDate(d) {
 				this.showDate = d;
+            },
+            toggleItemModal(c,e) {
+                console.log(c,e)
+                // console.log(calendarItem)
+                this.item = c
+                this.showItem = !this.showItem
             }
         }
 }
 </script>
 
 <style scoped>
-/* @import "../../node_modules/vue-simple-calendar/static/css/default.css"; */
+@import "../../node_modules/vue-simple-calendar/static/css/default.css";
+@import "../../node_modules/vue-simple-calendar/static/css/holidays-us.css";
 .calendarReq {
     display: flex;
 flex-direction: column;
@@ -94,92 +108,6 @@ having to override as much.
 */
 
 /* Header */
-
-.custom .cv-header,
-.custom .cv-header-day {
-	background-color: #7d9ccc;
-}
-
-.custom .cv-header .periodLabel {
-	font-size: 1rem;
-}
-
-.custom .cv-header button {
-	color: #7f7f7f;
-}
-
-.custom .cv-header button:disabled {
-	color: #ccc;
-	background-color: #f7f7f7;
-}
-
-/* Grid */
-
-.custom .cv-day.past {
-	background-color: #fafafa;
-}
-
-.custom .cv-day.outsideOfMonth {
-	background-color: #f7f7f7;
-}
-
-.custom .cv-day.today {
-	background-color: #ffe;
-}
-
-.custom .cv-wrapper, .custom .cv-wrapper div {
-    line-height: 1.6rem;
-    font-size: .7rem;
-}
-
-/* Events */
-
-.custom .cv-event {
-	border-color: #e0e0f0;
-	border-radius: 0.5em;
-	background-color: #e7e7ff;
-	text-overflow: ellipsis;
-}
-
-.custom .cv-event.purple {
-	background-color: #f0e0ff;
-	border-color: #e7d7f7;
-}
-
-.custom .cv-event.orange {
-	background-color: #ffe7d0;
-	border-color: #f7e0c7;
-}
-
-.custom .cv-event.continued::before,
-.custom .cv-event.toBeContinued::after {
-	content: " \21e2 ";
-	color: #999;
-}
-
-.custom .cv-event.toBeContinued {
-	border-right-style: none;
-	border-top-right-radius: 0;
-	border-bottom-right-radius: 0;
-}
-
-.custom .cv-event.isHovered.hasUrl {
-	text-decoration: underline;
-}
-
-.custom .cv-event.continued {
-	border-left-style: none;
-	border-top-left-radius: 0;
-	border-bottom-left-radius: 0;
-}
-
-/* Event Times */
-
-.custom .cv-event .startTime,
-.custom .cv-event .endTime {
-	font-weight: bold;
-	color: #666;
-}
 
 
 </style>
