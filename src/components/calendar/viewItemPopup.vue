@@ -6,12 +6,11 @@
           <div class="modal-body">
             <form v-on:submit.prevent class="column">
               <div class="row lineStyle">
-                <span>Brew Name:</span>
                 <span>{{item.title}}</span>
               </div>
-              <div class="row lineStyle">
+              <div v-if="item.originalEvent.brewers" class="row lineStyle">
               <span> Brewers: </span>
-               <span v-for="brewer in item.originalEvent.brewers" :key='brewer'>{{brewer}}</span>
+               <span v-for="brewer in item.originalEvent.brewers" :key='brewer'> {{brewer}},</span>
               </div>
            <a class='lineStyle'> Go to page </a>
               

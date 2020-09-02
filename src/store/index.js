@@ -30,29 +30,92 @@ fb.auth.onAuthStateChanged(user => {
   }
 })
 
-      // realtime firebase connection
-      fb.db.collection('brewDays').orderBy('startDate', 'desc').onSnapshot(snapshot => {
-        let daysArray = []
-      
-        snapshot.forEach(doc => {
-          let post = doc.data()
-          post.id = String(doc.id)
-            post.startDate = new Date(doc.data().startDate.seconds*1000)
-          
-          daysArray.push(post)
-        })
-     console.log(daysArray)
-        store.commit('brewDaysMutate', daysArray)
-      })
+// realtime firebase connection
+fb.db.collection('brewDays').orderBy('startDate', 'desc').onSnapshot(snapshot => {
+  let daysArray = []
+  snapshot.forEach(doc => {
+    let post = doc.data()
+    post.id = String(doc.id)
+    post.startDate = new Date(doc.data().startDate.seconds * 1000)
+    daysArray.push(post)
+  })
+  console.log("Brew Days Array", daysArray)
+  store.commit('brewDaysMutate', daysArray)
+})
+
+fb.db.collection('restDates').orderBy('startDate', 'desc').onSnapshot(snapshot => {
+  let daysArray = []
+  snapshot.forEach(doc => {
+    let post = doc.data()
+    post.id = String(doc.id)
+    post.startDate = new Date(doc.data().startDate.seconds * 1000)
+    daysArray.push(post)
+  })
+  console.log("Rest Days Array", daysArray)
+  store.commit('restDatesMutate', daysArray)
+})
+
+fb.db.collection('dryHopDates').orderBy('startDate', 'desc').onSnapshot(snapshot => {
+  let daysArray = []
+  snapshot.forEach(doc => {
+    let post = doc.data()
+    post.id = String(doc.id)
+    post.startDate = new Date(doc.data().startDate.seconds * 1000)
+    daysArray.push(post)
+  })
+  console.log("Hop Days Array", daysArray)
+  store.commit('dryHopDatesMutate', daysArray)
+})
+
+fb.db.collection('coldCrashDates').orderBy('startDate', 'desc').onSnapshot(snapshot => {
+  let daysArray = []
+  snapshot.forEach(doc => {
+    let post = doc.data()
+    post.id = String(doc.id)
+    post.startDate = new Date(doc.data().startDate.seconds * 1000)
+    daysArray.push(post)
+  })
+  console.log("Crash Days Array", daysArray)
+  store.commit('coldCrashDatesMutate', daysArray)
+})
+
+fb.db.collection('brightTankDates').orderBy('startDate', 'desc').onSnapshot(snapshot => {
+  let daysArray = []
+  snapshot.forEach(doc => {
+    let post = doc.data()
+    post.id = String(doc.id)
+    post.startDate = new Date(doc.data().startDate.seconds * 1000)
+    daysArray.push(post)
+  })
+  console.log("Tan Days Array", daysArray)
+  store.commit('brightTankDatesMutate', daysArray)
+})
+
+fb.db.collection('packageDates').orderBy('startDate', 'desc').onSnapshot(snapshot => {
+  let daysArray = []
+  snapshot.forEach(doc => {
+    let post = doc.data()
+    post.id = String(doc.id)
+    post.startDate = new Date(doc.data().startDate.seconds * 1000)
+    daysArray.push(post)
+  })
+  console.log("Package Days Array", daysArray)
+  store.commit('packageDatesMutate', daysArray)
+})
 
 export default new Vuex.Store({
   state: {
-     // USER DATA BINDS
-     currentUser: null,
-     userProfile: {},
+    // USER DATA BINDS
+    currentUser: null,
+    userProfile: {},
 
-     // BREWS
-     brewDaysState: []
+    // BREWS
+    brewDaysState: [],
+    restDatesState: [],
+    dryHopDatesState: [],
+    coldCrashDatesState: [],
+    brightTankDatesState: [],
+    packageDatesState: []
   },
   mutations: {
     // LOGIN // AUTH STUFF
@@ -66,9 +129,24 @@ export default new Vuex.Store({
       console.log(val)
       state.userProfile = val
     },
-    brewDaysMutate(state, val){
+    brewDaysMutate(state, val) {
       state.brewDaysState = val
-    }
+    },
+    restDatesMutate(state, val) {
+      state.restDatesState = val
+    },
+    dryHopDatesMutate(state, val) {
+      state.dryHopDatesState = val
+    },
+    coldCrashDatesMutate(state, val) {
+      state.coldCrashDatesState = val
+    },
+    brightTankDatesMutate(state, val) {
+      state.brightTankDatesState = val
+    },
+    packageDatesMutate(state, val) {
+      state.packageDatesState = val
+    },
   },
   actions: {
     logout: function (context) {
@@ -83,8 +161,8 @@ export default new Vuex.Store({
           console.log(err);
         });
     },
-     // LOGGING IN // AUTH STUFF //
-     fetchUserProfile({ commit, state }) {
+    // LOGGING IN // AUTH STUFF //
+    fetchUserProfile({ commit, state }) {
       console.log('handle empty profiles more elegantly...')
       console.log('dispatch user profile get, TODO ONLY RUN when need it, not on auth state change...? maybe null it on auth change');
       console.log(state.currentUser.uid)
@@ -134,13 +212,56 @@ export default new Vuex.Store({
     },
 
     // BREW DAYS
-    addBrewDayAction: function(context, data) {
-      return fb.db.collection('brewDays').add({
+    addBrewDayAction: function (context, data) {
+      let saves = []
+      saves.push(fb.db.collection('brewDays').add({
         brewers: data.brewers,
+        volume: data.volume,
         startDate: data.date,
-        title: data.brewName,
+        title: "Brew day: " + data.brewName,
         style: 'background-color:' + String(data.color)
-      })
+      }))
+
+      // TODO: tracking yeasts
+      saves.push(fb.db.collection('yeasts').add({
+        startDate: data.date,
+        title: "Using " + data.yeast + " for " + data.brewName,
+        style: 'background-color:' + String(data.color)
+      }))
+      saves.push(fb.db.collection('packageDates').add({
+        title: 'Packaging ' + data.brewName,
+        startDate: data.brewPackageDate,
+        style: 'background-color:' + String(data.color)
+      }))
+      saves.push(fb.db.collection('brightTankDates').add({
+        title: 'Bright tank ' + data.brewName,
+        startDate: data.brewBrightTankDate,
+        style: 'background-color:' + String(data.color)
+      }))
+      saves.push(fb.db.collection('coldCrashDates').add({
+        title: 'Cold crash ' + data.brewName,
+        startDate: data.brewColdCrashDate,
+        style: 'background-color:' + String(data.color)
+      }))
+      saves.push(fb.db.collection('dryHopDates').add({
+        title: 'Dry hop ' + data.brewName + " with " + data.hops,
+        startDate: data.brewDryHopDate,
+        style: 'background-color:' + String(data.color)
+      }))
+      saves.push(fb.db.collection('restDates').add({
+        title: 'Rest ' + data.brewName,
+        startDate: data.brewRestDate,
+        style: 'background-color:' + String(data.color)
+      }))
+
+      // TODO: Equipment
+
+      //  fermentors: this.fermentors,
+      // brightTanks: this.brightTanks,
+      // system:this.system
+
+      return saves
+
     }
   }
 })
