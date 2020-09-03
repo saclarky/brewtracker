@@ -70,7 +70,7 @@ import { CalendarView, CalendarViewHeader } from "vue-simple-calendar"
 import viewItemPopup from '../components/calendar/viewItemPopup'
 export default {
     mounted() {
-console.log(this.brewDaysState)
+console.log(this.brewsState)
     },
     components: {CalendarView, CalendarViewHeader, viewItemPopup},
     data: function() {
@@ -105,7 +105,7 @@ console.log(this.brewDaysState)
             allCalItems: function() {
                 let blankArray = []
                 if(this.showBrewDays == true) {
-                    blankArray = blankArray.concat(this.brewDaysState)
+                    blankArray = blankArray.concat(this.brewsState)
                 }
                  if(this.showRestDays == true) {
                     blankArray = blankArray.concat(this.restDatesState)
@@ -124,7 +124,7 @@ console.log(this.brewDaysState)
                 }       
                 return blankArray
             },
-            ...mapState(['brewDaysState','restDatesState','dryHopDatesState','coldCrashDatesState','brightTankDatesState',
+            ...mapState(['brewsState','restDatesState','dryHopDatesState','coldCrashDatesState','brightTankDatesState',
             'packageDatesState'])            
         },
 		methods: {

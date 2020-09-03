@@ -51,6 +51,18 @@
           <label for="brewHops">Hops:</label>
           <input type="text" id="brewHops" name="brewHops" v-model="brewHops" />
         </div>
+        <div class="lineSection">
+          <label for="brewABV">ABV:</label>
+          <input type="text" id="brewABV" name="brewABV" v-model="brewABV" />
+        </div>
+        <div class="lineSection">
+          <label for="brewIBU">IBU:</label>
+          <input type="text" id="brewIBU" name="brewIBU" v-model="brewIBU" />
+        </div>        
+        <div class="lineSection">
+          <label for="brewDescription">Description:</label>
+          <input type="text" id="brewDescription" name="brewDescription" v-model="brewDescription" />
+        </div>
       </div>
 
       <div class="formSection">
@@ -133,7 +145,9 @@ export default {
       brewVolume: "",
       brewYeast: "",
       brewHops: "",
-      
+      brewIBU: '',
+      brewABV: '',
+      brewDescription: '',
       fermentors: [],
       brightTanks: [],
       system:'',
@@ -232,6 +246,9 @@ brewBrightTankDate: function() {
         hops: this.brewHops,
         volume: this.brewVolume,
         yeast: this.brewYeast,
+        ABV: this.brewABV,
+        IBU: this.brewIBU,
+        description: this.brewDescription,
          brewPackageDate: this.brewPackageDate,
       brewBrightTankDate: this.brewBrightTankDate,
       brewColdCrashDate: this.brewColdCrashDate,

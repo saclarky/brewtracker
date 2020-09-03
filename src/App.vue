@@ -12,7 +12,11 @@ import navigation from './components/navigation/navigation'
 import navigationUser from './components/navigation/navigationUser'
 
 export default {
-  
+  created() {
+this.$store.dispatch('initAllBrewData').then(() => {
+  console.log('firebase load done')
+}) 
+  },
   components: {navigation, navigationUser},
   computed: {
     ...mapState(['currentUser'])
