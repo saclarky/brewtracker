@@ -1,5 +1,39 @@
 <template>
     <div class='navOffset'>
+        <div class='main'>
+            <div class='bar'>
+                <div>   
         Welcome!
+        </div>
+        <div class='subhead'>
+            Log-in or use the navigation bar to view the schedule and add beers.
+        </div>
+            </div>
+        </div>
+        
     </div>
 </template>
+
+<style scoped>
+.main {
+    height: 100%;   
+    background-image: url('../assets/barrels_bw.jpg');
+    background-position: center;
+  background-repeat: no-repeat;  
+  background-size: cover;
+    /* padding: 25px 0; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+}
+.bar {
+    background-color:rgba(138,0,0,.75);
+    padding: 0 25px;
+}
+.subhead {
+    font-size: 1.5rem;
+}
+</style>

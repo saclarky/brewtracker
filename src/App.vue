@@ -30,16 +30,24 @@ this.$store.dispatch('initAllBrewData').then(() => {
 html, body {
   font-family: 'Yantramanav', sans-serif;
   font-size: 16pt;
-  height: 100%;
-	margin: 0;
-	/* background-color: #f7fcff; */
+  
+  box-sizing: border-box;
+}
+html {
+  height: calc(100% - 79px);
 }
 body {
   margin: 0 auto;
+  padding: 0;
+  height: 100%;
+}
+#app {
+  height: 100%;
 }
 .navOffset {
   position: relative;
-  top: 72px;
+  top: 79px;
+  height: 100%;
 }
 .row {
     display: flex;
