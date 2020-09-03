@@ -383,7 +383,7 @@ p {
 
 .hero {
   height: 100%;
-  background-image: url("../assets/grain.jpg");
+  background-image: url("../assets/grain_desktop.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

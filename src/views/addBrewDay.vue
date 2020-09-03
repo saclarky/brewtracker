@@ -3,6 +3,7 @@
     <div class="title">Add to Brew Schedule</div>
     <form @submit.prevent>
       <div class="column formSection">
+        <div class='row rowStyle2'>
         <div class="lineSection">
           <label for="beerName">Brew Name:</label>
           <input type="text" id="beerName" name="beerName" v-model="brewName" />
@@ -17,15 +18,18 @@
           </select>
         </div>
         <!-- Color -->
+        <div class='row'>
         <div>Choose a calendar color for this brew:</div>
         <verte v-model="brewColor" model="rgb"></verte>
+        </div>
+        </div>
         <!-- Date and Time -->
-        <div class="row lineSection">
-          <div class="column">
+        <div class="row lineSection rowStyle3">
+          <div class="column spacer">
             <span class="rowItem">Set Date:</span>
             <v-date-picker mode="single" v-model="brewDate" is-inline />
           </div>
-          <div class="column">
+          <div class="column spacer">
             <span class="rowItem">Set Time:</span>
             <vue-timepicker
               format="hh:mm A"
@@ -36,9 +40,9 @@
           </div>
         </div>
       </div>
-
-      <div class="formSection">
-        <div class="sectionTitle">Brew Details</div>
+<div class="sectionTitle">Brew Details</div>
+      <div class="formSection row rowStyle3">
+        
         <div class="lineSection">
           <label for="brewVolume">Volume:</label>
           <input type="text" id="brewVolume" name="brewVolume" v-model="brewVolume" />
@@ -64,34 +68,35 @@
           <input type="text" id="brewDescription" name="brewDescription" v-model="brewDescription" />
         </div>
       </div>
-
+ <div class="sectionTitle">Schedule</div>
       <div class="formSection">
-        <div class="sectionTitle">Schedule</div>
-        <div class="row">
+       
+        <div class="row verticalSpacer">
           <span class="rowItem">Rest:</span>
           <v-date-picker mode="single" v-model="brewRestDate" />
         </div>
-        <div class="row">
+        <div class="row verticalSpacer">
           <span class="rowItem">Dry-Hop:</span>
           <v-date-picker mode="single" v-model="brewDryHopDate" />
         </div>
-        <div class="row">
+        <div class="row verticalSpacer">
           <span class="rowItem">Cold Crash:</span>
           <v-date-picker mode="single" v-model="brewColdCrashDate" />
         </div>
-        <div class="row">
+        <div class="row verticalSpacer">
           <span class="rowItem">Bright Tank:</span>
           <v-date-picker mode="single" v-model="brewBrightTankDate" />
         </div>
-        <div class="row">
+        <div class="row verticalSpacer">
           <span class="rowItem">Package:</span>
           <v-date-picker mode="single" v-model="brewPackageDate" />
         </div>
       </div>
 
+ <div class="sectionTitle">Equipment</div>
       <div class="formSection">
-        <div class="sectionTitle">Equipment</div>
-         <div class="lineSection">
+       
+         <div class=" rowItem lineSection">
           <label for="fermentors">Fermentors:</label>
           <select name="fermentors" id="fermentors" mutliple v-model="fermentors">
             <option value="A">A</option>
@@ -100,7 +105,7 @@
             <option value="D">D</option>
           </select>
         </div>
-        <div class="lineSection">
+        <div class=" rowItem lineSection">
           <label for="brightTanks">Bright Tanks:</label>
           <select name="brightTanks" id="brightTanks" mutliple v-model="brightTanks">
             <option value="A">A</option>
@@ -109,7 +114,7 @@
             <option value="D">D</option>
           </select>
         </div>
-        <div class="lineSection">
+        <div class="rowItem lineSection">
           <label for="system">System:</label>
           <select name="system" id="system" mutliple v-model="system">
             <option value="A">A</option>
@@ -297,7 +302,7 @@ this.showSpinner = false;
   font-size: 1.1rem;
 }
 .formSection {
-  padding: 25px;
+  padding: 0 25px;
 }
 .lineSection {
   margin: 20px 0;
@@ -307,8 +312,19 @@ this.showSpinner = false;
   align-items: center;
   margin: 10px 0;
 }
+.rowStyle3 {
+  justify-content: center;
+}
+.verte {
+  margin-left: 15px;
+}
+.rowStyle2 {
+  justify-content: space-around;
+    align-items: baseline;
+}
 .rowItem {
   padding: 3px 10px;
+  margin-left: 35px;
 }
 button.rowItem {
   margin-left: 10px;
@@ -316,5 +332,15 @@ button.rowItem {
 input,
 button {
   margin: 5px;
+}
+.spacer {
+  padding: 25px;
+}
+.verticalSpacer {
+  margin: 10px 0;
+}
+.rowWrap {
+  flex-flow: wrap;
+  justify-content: space-around;
 }
 </style>

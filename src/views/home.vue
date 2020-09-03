@@ -33,7 +33,7 @@ export default {
 <style scoped>
 .main {
     height: 100%;   
-    background-image: url('../assets/barrels_bw.jpg');
+    background-image: url('../assets/barrels_bw_desktop.jpg');
     background-position: center;
   background-repeat: no-repeat;  
   background-size: cover;
@@ -46,8 +46,8 @@ export default {
     font-size: 2rem;
 }
 .bar {
-    background-color:rgba(138,0,0,.75);
-    padding: 0 25px;
+    background-color:rgb(138 76 0 / 75%);
+    padding: 50px 25px;
 }
 .subhead {
     font-size: 1.5rem;

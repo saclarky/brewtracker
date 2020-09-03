@@ -28,6 +28,7 @@ fb.auth.onAuthStateChanged(user => {
     store.commit('setCurrentUser', null);
     store.commit('setUserProfile', {});
   }
+  router.push("/");
 })
 
 export default new Vuex.Store({
@@ -77,6 +78,37 @@ export default new Vuex.Store({
   },
   getters: {
     allBrewsGetter: state => {
+      function formatDate(dff) {
+        let dd = new Date(Date.parse(dff))
+         //am/pm
+         let hours = dd.getHours();
+         let flipper = " AM";
+         if (hours >= 12) {
+           if (hours > 12) {
+             hours = hours - 12;
+           }
+           flipper = " PM";
+         }
+         if (hours == 0) {
+           hours = 12;
+         }
+         let m = dd.getMinutes();
+         m = m < 10 ? "0" + m : m;
+ 
+         let newFormat =
+           dd.toLocaleString("default", {
+             month: "long"
+           }) +
+           " " +
+           dd.getDate() + " " +
+           dd.getFullYear() +
+           ", " +
+           hours +
+           ":" +
+           m +
+           flipper;
+        return newFormat
+      }
       let brewIDs = []
       let allBrews =[]
       state.brewsState.forEach(day => {
@@ -84,8 +116,7 @@ export default new Vuex.Store({
       }) 
       brewIDs.forEach(id => {
         let tmp = state.brewsState.find(x => x.id === id);
-        console.log('brew', tmp)
-        console.log( state.restDatesState)
+         tmp.brewDate = formatDate(state.brewsState.find(x => x.id === id).startDate)
         tmp.rest = state.restDatesState.find(x => x.brewID === id).startDate;
         tmp.dryHop = state.dryHopDatesState.find(x => x.brewID === id).startDate;
         tmp.coldCrash = state.coldCrashDatesState.find(x => x.brewID === id).startDate;

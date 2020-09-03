@@ -93,14 +93,14 @@ section {
   margin: 0 10px;
 }
 a {
-  color: #09709a;
+  color: #a75a19;
   font-size: .9rem;
   cursor:pointer;
   text-decoration: none;
 }
 
 a.router-link-exact-active {
-  color: #43c3f7;
+  color: #ceb193;
 }
 /* ul {
     display: flex;

@@ -163,7 +163,7 @@ console.log(this.brewsState)
     display: flex;
 flex-direction: column;
 flex-grow: 1;
-min-height: 800px;
+min-height: 600px;
 }
 .rowPadding {
     padding: 15px 5px;
