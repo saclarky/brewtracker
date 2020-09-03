@@ -34,7 +34,8 @@ html, body {
   box-sizing: border-box;
 }
 html {
-  height: calc(100% - 79px);
+  /* height: calc(100% - 79px); this fails with hidden nav */
+  height: 100%;
 }
 body {
   margin: 0 auto;
@@ -47,6 +48,11 @@ body {
 .navOffset {
   position: relative;
   top: 79px;
+  height: 100%;
+}
+.minOffset {
+     position: relative;
+  top: 48px;
   height: 100%;
 }
 .row {

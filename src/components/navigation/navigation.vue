@@ -72,10 +72,10 @@ section {
 }
 a {
   color: #09709a;
+  text-decoration: none;
 }
-
 a.router-link-exact-active {
-  color: #42b983;
+  color: #ceb193;
 }
 /* ul {
     display: flex;

@@ -1,5 +1,5 @@
 <template>
-    <div class='navOffset'>
+    <div :class='offset'>
         <div class='main'>
             <div class='bar'>
                 <div>   
@@ -13,6 +13,22 @@
         
     </div>
 </template>
+
+<script>
+import { mapState } from 'vuex'
+export default {
+    computed: {
+        offset: function() {
+            if(this.currentUser) {
+                return {navOffset:true}
+            } else {
+                return {minOffset: true}
+            }
+        },
+        ...mapState(['currentUser'])
+    }
+}
+</script>
 
 <style scoped>
 .main {
