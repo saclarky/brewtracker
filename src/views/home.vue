@@ -1,5 +1,5 @@
 <template>
     <div class='navOffset'>
-        Brews
+        Welcome!
     </div>
 </template>

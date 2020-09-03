@@ -1,43 +1,58 @@
 <template>
     <div class='navOffset'>
         <div class='row rowPadding'>
-            Duration
+            <div class='pad'>
+            Calendar:
+            </div>
             <input type='text' id='periodCount' v-model="countOfPeriod" placeholder='1'>
             <div class="row rowStyle">
+                 <span class='row inputRow'>
                  <input type="radio" name="periodSelect" value="month" id="flex" v-model="radioFlex" selected>
                  <label class="rowItem smText" for="flex">Months</label>
+                 </span>
+                  <span class='row inputRow'>
                  <input type="radio" name="periodSelect" value="week" id="poss" v-model="radioFlex">
                  <label class="rowItem smText" for="poss">Weeks</label>
+                    </span>
+                  <span class='row inputRow'>
                  <input type="radio" name="periodSelect" value="year" id="hard" v-model="radioFlex">
                  <label class="rowItem smText" for="hard">Years</label>
+                 </span>
               </div>
         </div>
         <div class='row rowPadding'>
-            Schedules to Display: 
+            <div class='pad'>
+            Events: 
+            </div>
+                <span class='row inputRow'>
             
-                <span class='row inputRow'>
-            <label class="rowItem smText" for="bd">Brew</label>
             <input type='checkbox' id='bd' :value='showBrewDays' v-model='showBrewDays'>
+            <label class="rowItem smText" for="bd">Brew</label>
             </span>
                 <span class='row inputRow'>
-             <label class="rowItem smText" for="bd">Rest</label>
+            
             <input type='checkbox' id= 'rd' v-model='showRestDays'>
+             <label class="rowItem smText" for="bd">Rest</label>
             </span>
                 <span class='row inputRow'>
-             <label class="rowItem smText" for="bd">Dry Hop</label>
+             
             <input type='checkbox' id='dhd' v-model='showDryHopDays'>
+            <label class="rowItem smText" for="bd">Dry Hop</label>
             </span>
                 <span class='row inputRow'>
-             <label class="rowItem smText" for="bd">Cold Crash</label>
+            
             <input type='checkbox' id='ccd' v-model='showColdCrashDays'>
+             <label class="rowItem smText" for="bd">Cold Crash</label>
             </span>
                 <span class='row inputRow'>
-             <label class="rowItem smText" for="bd">Bright Tank</label>
+            
             <input type='checkbox' id= 'btd' v-model='showBrightTankDays'>
+             <label class="rowItem smText" for="bd">Bright Tank</label>
             </span>
                 <span class='row inputRow'>
-             <label class="rowItem smText" for="bd">Package</label>
+            
             <input type='checkbox' id= 'pd' v-model='showPackageDays'>
+             <label class="rowItem smText" for="bd">Package</label>
             </span>
         </div>
         <div class='calendarReq'>
@@ -49,7 +64,7 @@
             :events="allCalItems"
             :displayPeriodUom='calPeriodDisplay'
             :displayPeriodCount='calPeriodCount'
-			class="custom"
+			class="theme-default"
              @click-event="toggleItemModal" 
             >
             <!-- in v5 you can clcik in item directly, replace click-date -->
@@ -57,7 +72,8 @@
 				slot="header"
 				slot-scope="t"
 				:header-props="t.headerProps"
-				@input="setShowDate" />
+				@input="setShowDate" 
+                 />
 		</calendar-view>
         </div>
         <viewItemPopup v-if="showItem" @close='toggleItemModal("","")' :item="item"></viewItemPopup>
@@ -142,8 +158,7 @@ console.log(this.brewsState)
 </script>
 
 <style scoped>
-/* @import "../../node_modules/vue-simple-calendar/static/css/default.css"; */
-/* @import "../../node_modules/vue-simple-calendar/static/css/holidays-us.css"; */
+@import "../components/calendar/defaultCustom.css";
 .calendarReq {
     display: flex;
 flex-direction: column;
@@ -152,91 +167,23 @@ min-height: 800px;
 }
 .rowPadding {
     padding: 15px 5px;
+    display: flex;
+    align-items: center;
 }
 .inputRow {
     padding-right: 15px;
+    align-items: baseline;
+    font-size: 0.8rem;
+}
+.rowStyle {
     align-items: center;
+    
 }
-
-
-/*
-**************************************************************
-This theme is the default shipping theme, it includes some
-decent defaults, but is separate from the calendar component
-to make it easier for users to implement their own themes w/o
-having to override as much.
-**************************************************************
-*/
-
-/* Header */
-.custom .cv-header,
-.custom .cv-header-day {
-	background-color: #32637a;
+#periodCount {
+    width: 25px;
+    margin-right: 5px;
 }
-.custom .cv-header .periodLabel {
-	font-size: 1rem;
+.pad {
+    margin: 0 5px;
 }
-.custom .cv-header button {
-	color: #7f7f7f;
-}
-.custom .cv-header button:disabled {
-	color: #ccc;
-	background-color: #f7f7f7;
-}
-/* Grid */
-.custom .cv-day.past {
-	background-color: #fafafa;
-}
-.custom .cv-day.outsideOfMonth {
-	background-color: #f7f7f7;
-}
-.custom .cv-day.today {
-	background-color: #ffe;
-}
-.custom .cv-wrapper, .custom .cv-wrapper div {
-    line-height: 1.6rem;
-    /* font-size: .7rem; */
-}
-/* Events */
-.custom .cv-event {
-	border-color: #e0e0f0;
-	border-radius: 0.5em;
-	background-color: #e7e7ff;
-	text-overflow: ellipsis;
-    font-size: .9rem;
-}
-.custom .cv-event.purple {
-	background-color: #f0e0ff;
-	border-color: #e7d7f7;
-}
-.custom .cv-event.orange {
-	background-color: #ffe7d0;
-	border-color: #f7e0c7;
-}
-.custom .cv-event.continued::before,
-.custom .cv-event.toBeContinued::after {
-	content: " \21e2 ";
-	color: #999;
-}
-.custom .cv-event.toBeContinued {
-	border-right-style: none;
-	border-top-right-radius: 0;
-	border-bottom-right-radius: 0;
-}
-.custom .cv-event.isHovered.hasUrl {
-	text-decoration: underline;
-}
-.custom .cv-event.continued {
-	border-left-style: none;
-	border-top-left-radius: 0;
-	border-bottom-left-radius: 0;
-}
-/* Event Times */
-.custom .cv-event .startTime,
-.custom .cv-event .endTime {
-	font-weight: bold;
-	color: #666;
-}
-
-
 </style>

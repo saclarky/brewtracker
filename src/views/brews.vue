@@ -25,6 +25,11 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Stalemate&display=swap');
+.brewTitle {
+    font-family: 'Stalemate', cursive;
+    font-size: 1.5rem;
+}
 .section {
     padding: 10px
 }

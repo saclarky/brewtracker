@@ -25,10 +25,10 @@ this.$store.dispatch('initAllBrewData').then(() => {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Yantramanav&display=swap');
 @import '../node_modules/vue2-timepicker/dist/VueTimepicker.css';
 html, body {
-  font-family: 'Anonymous Pro', monospace;
+  font-family: 'Yantramanav', sans-serif;
   font-size: 16pt;
   height: 100%;
 	margin: 0;

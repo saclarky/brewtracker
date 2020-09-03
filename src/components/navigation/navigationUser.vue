@@ -17,7 +17,7 @@
             <div class="menu-item" >
               <router-link to="/brews">Brews</router-link>
             </div>
-            <div class="menu-item">
+            <div class="menu-item last">
               <a @click="logout">Logout</a>
             </div>
       
@@ -84,6 +84,9 @@ section {
 .menu-item {
   font-size: 1.1rem;
   padding: 5px 15px;
+}
+.menu-item.last {
+  padding: 5px 0 5px 15px;
 }
 .col {
   display: flex;

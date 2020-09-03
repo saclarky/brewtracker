@@ -3,7 +3,7 @@
     <section class='nav'>
       <div>
         <!-- <div class="logo-wrap"><i class="material-icons"> near_me </i>	</div> -->
-        <router-link to="home" class="hero-icon"></router-link>
+        <router-link to="/" class="hero-icon"></router-link>
       </div>
       <div class='row rowStyle'>
         <div v-if="!currentUser">
@@ -98,6 +98,6 @@ a.router-link-exact-active {
   background-size: contain;
   width: 25px;
   height: 25px;
-  margin-bottom: 0;
+  display: block;
 }
 </style>
