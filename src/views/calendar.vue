@@ -54,6 +54,11 @@
             <input type='checkbox' id= 'pd' v-model='showPackageDays'>
              <label class="rowItem smText" for="bd">Package</label>
             </span>
+             <span class='row inputRow'>
+            
+            <input type='checkbox' id= 'fd' v-model='showFermentorsDays'>
+             <label class="rowItem smText" for="fd">Fermentors</label>
+            </span>
         </div>
         <div class='calendarReq'>
             <!-- The default calendar header emits an input event when a user clicks a button in the header to move the calendar 
@@ -98,6 +103,7 @@ console.log(this.brewsState)
         showColdCrashDays: true,
         showBrightTankDays: true,
         showPackageDays: true,
+        showFermentorsDays: true,
                 showDate: new Date(),
                 radioFlex: 'month',
                 countOfPeriod: 1,
@@ -137,11 +143,14 @@ console.log(this.brewsState)
                 }
                  if(this.showPackageDays == true) {
                     blankArray = blankArray.concat(this.packageDatesState)
-                }       
+                } 
+                if(this.showFermentorsDays == true) {
+                    blankArray = blankArray.concat(this.fermentorsState)
+                }      
                 return blankArray
             },
             ...mapState(['brewsState','restDatesState','dryHopDatesState','coldCrashDatesState','brightTankDatesState',
-            'packageDatesState'])            
+            'packageDatesState','fermentorsState'])            
         },
 		methods: {
 			setShowDate(d) {

@@ -43,7 +43,8 @@ export default new Vuex.Store({
     dryHopDatesState: [],
     coldCrashDatesState: [],
     brightTankDatesState: [],
-    packageDatesState: []
+    packageDatesState: [],
+    fermentorsState: []
   },
   mutations: {
     // LOGIN // AUTH STUFF
@@ -75,6 +76,9 @@ export default new Vuex.Store({
     packageDatesMutate(state, val) {
       state.packageDatesState = val
     },
+    fermentorsMutate(state, val) {
+      state.fermentorsState = val
+    }
   },
   getters: {
     allBrewsGetter: state => {
@@ -267,6 +271,21 @@ fb.db.collection('packageDates').orderBy('startDate', 'desc').onSnapshot(snapsho
   console.log("Package Days Array", daysArray)
   store.commit('packageDatesMutate', daysArray)
 })
+
+fb.db.collection('fermentors').orderBy('startDate', 'desc').onSnapshot(snapshot => {
+  console.log("fermentors data snapshot")
+  let daysArray = []
+  snapshot.forEach(doc => {
+    let post = doc.data()
+    console.log('f',post)
+    post.id = String(doc.id)
+    post.startDate = new Date(doc.data().startDate.seconds * 1000)
+    post.endDate = new Date(doc.data().endDate.seconds * 1000)
+    daysArray.push(post)
+  })
+  console.log("ferm Days Array", daysArray)
+  store.commit('fermentorsMutate', daysArray)
+})
     },
     addBrewDayAction: function (context, data) {
       console.log('save brew')
@@ -325,6 +344,16 @@ fb.db.collection('packageDates').orderBy('startDate', 'desc').onSnapshot(snapsho
       // TODO: Equipment
 
       //  fermentors: this.fermentors,
+      let color = String(data.color).replace(')', ' / .2)') // make RGBA, add A
+      color = color.replace(',', ' ')
+      saves.push(fb.db.collection('fermentors').add({
+        title: 'Fermentor ' + data.fermentors + ' full',
+        startDate: data.date,
+      endDate: data.brewBrightTankDate,
+      name: data.fermentors,
+        style: 'background-color:' + color,
+        brewID: doc.id
+      }))
       // brightTanks: this.brightTanks,
       // system:this.system
 
